@@ -37,69 +37,77 @@ export const createUser = async (req,res) => {
     }
     
 };
-export const getAllTasks = async (req, res) => {
+export const getAllUsers = async (req, res) => {
     try {
-        const tasks = await Task.findAll();
+        const user = await User.findAll();
         return res.json({
-            count: tasks.length,
-            data: tasks
+            count: user.length,
+            data: user
         })
 
     } catch (error) {
         console.log(error);
         return res.status(404).json({
-              msg:"No se encontraron tareas"
+              msg:"No se encontraron Usuarios"
         }
           
         )
     }
 };
-export const getTaskById = async (req, res) => {
+export const getUserById = async (req, res) => {
     const {id} = req.params;
     try {
-        const task = await Task.findByPk(id);
-        if(!task){
+        const user = await User.findByPk(id);
+        if(!user){
             return res.status(404).json({
-                msg:"No se encontro la tarea"
+                msg:"No se encontro el usuario"
             })
         }
+        return res.status(200).json(user);
     } catch (error) {
         console.log(error);
         return res.status(500).json({
-            msg:"No se pudo encontrar la tarea"
+            msg:"No se pudo encontrar el usuario"
         })
     }
 };
-export const updateTaskById = async (req, res) => {
+export const updateUserById = async (req, res) => {
     const {id} = req.params;
-    const {title,description} = req.body;
+    const {name, email, password} = req.body;
     try {
-        const task = await Task.findByPk(id);
-        if(!task){
+        const users = await User.findByPk(id);
+        if(!users){
             return res.status(404).json({
-                msg:"No se encontro la tarea"
+                msg:"No se encontro el usuario"
             })
         }
-        if (title === undefined || title === ""){
+        if (name === undefined || name === ""){
             return res.status(400).json({
                 msg:"Title no puede ser nulo"
             })
         };
-        if (description === undefined || description === ""){
+        if (email === undefined || email  === ""){
+            return res.status(400).json({
+                msg:"Description no puede ser nulo"
+            })
+        
+        };
+        if (password === undefined || password === ""){
             return res.status(400).json({
                 msg:"Description no puede ser nulo"
             })
         };
-        await Task.update({title,description},{where:{id}});
+
+        await User.update({name,email,password},{where:{id}});
         return res.status(200).json({
-            msg:"Tarea actualizada correctamente"
+            msg:"Usuario actualizado correctamente"
         })
 
 
     } catch (error) {
         console.log(error);
         return res.status(500).json({
-            msg:"No se pudo actualizar la tarea"
+            msg:"No se pudo actualizar el usuario"
         })
     }
 
@@ -109,26 +117,27 @@ export const updateTaskById = async (req, res) => {
 
 }
 
-export const deleteTaskById = async (req, res) => {
+export const deleteUserById = async (req, res) => {
     const {id} = req.params;
     try {
-        const task = await Task.findByPk(id);
-        if(!task){
+        const users = await User.findByPk(id);
+        if(!users){
             return res.status(404).json({
-                msg:"No se encontro la tarea"
+                msg:"No se encontro el usuario"
             })
         }
-        await Task.destroy({where:{id}});
-        return res.status(200 .json({
-            msg:"Tarea eliminada correctamente"}))
+        await User.destroy({where:{id}});
+        return res.status(200).json({
+            msg:"Usuario eliminado correctamente"})
+            
     } catch (error) {
         console.log(error);
         return res.status(500).json({
-            msg:"No se pudo eliminar la tarea"
+            msg:"No se pudo eliminar el usuario"
         })
     }
 
 
 
-}
+};
 

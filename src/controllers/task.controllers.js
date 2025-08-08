@@ -59,6 +59,7 @@ export const getTaskById = async (req, res) => {
                 msg:"No se encontro la tarea"
             })
         }
+        return res.status(200).json(task);
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -115,8 +116,8 @@ export const deleteTaskById = async (req, res) => {
             })
         }
         await Task.destroy({where:{id}});
-        return res.status(200 .json({
-            msg:"Tarea eliminada correctamente"}))
+        return res.status(200).json({
+            msg:"Tarea eliminada correctamente"})
     } catch (error) {
         console.log(error);
         return res.status(500).json({
