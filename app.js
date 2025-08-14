@@ -14,6 +14,9 @@ app.use("/api", routerTask)
 app.use("/api", routesUser);
 app.get('/', (req, res) => res.json({ ok: true }));
 
+
+
+
 initDB();
 
 app.listen(PORT, () => {
