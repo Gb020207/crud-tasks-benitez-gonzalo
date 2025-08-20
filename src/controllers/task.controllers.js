@@ -52,6 +52,11 @@ export const getAllTasks = async (req, res) => {
 };
 export const getTaskById = async (req, res) => {
     const {id} = req.params;
+    if (isNaN(id) || Number(id) <= 0){
+        return res.status(400).json({
+            msg:"El id debe ser un numero positivo"
+        })
+    }
     try {
         const task = await Task.findByPk(id);
         if(!task){

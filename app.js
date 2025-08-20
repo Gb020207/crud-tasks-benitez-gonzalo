@@ -3,6 +3,9 @@ import { initDB } from './src/config/database.js';
 import dotenv from 'dotenv';
 import routerTask from './src/routes/task.routes.js';
 import routesUser from './src/routes/user.routes.js';
+import { Task } from './src/models/task.models.js';
+import { User } from './src/models/user.models.js';
+import { Rank } from './src/models/rank.models.js';
 dotenv.config();
 
 const app = express();
