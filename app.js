@@ -3,9 +3,8 @@ import { initDB } from './src/config/database.js';
 import dotenv from 'dotenv';
 import routerTask from './src/routes/task.routes.js';
 import routesUser from './src/routes/user.routes.js';
-import { Task } from './src/models/task.models.js';
-import { User } from './src/models/user.models.js';
-import { Rank } from './src/models/rank.models.js';
+import routesRank from './src/routes/rank.routes.js';
+
 dotenv.config();
 
 const app = express();
@@ -15,6 +14,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use("/api", routerTask)
 app.use("/api", routesUser);
+app.use("/api", routesRank);
+
 app.get('/', (req, res) => res.json({ ok: true }));
 
 

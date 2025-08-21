@@ -6,7 +6,11 @@ const Task = sequelize.define("Task", {
     description:{type:DataTypes.STRING,allowNull:false,unique:true},
     isComplete:{type:DataTypes.BOOLEAN,defaultValue:false},
 
-});
+},
+{
+    timestamps: false
+}
+);
 
 Task.belongsTo(User, { foreignKey: 'userId', as: 'author'});
 User.hasMany(Task, { foreignKey: 'userId'});

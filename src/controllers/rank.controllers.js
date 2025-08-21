@@ -1,7 +1,7 @@
 import { Rank } from "../models/rank.models.js";
 
 export const createRank = async (req, res) => {
-    const { name, description, Level } = req.body;
+    const { name, description, level } = req.body;
     try {
         if (name === undefined || name === "") {
             return res.status(400).json({
@@ -13,7 +13,7 @@ export const createRank = async (req, res) => {
                 msg: "Hace falta una descripcion"
             })
         }
-        if (Level === undefined || Level === "") {
+        if (level === undefined || level === "") {
             return res.status(400).json({
                 msg: "El usuario requiere un nivel"
             })
@@ -94,7 +94,7 @@ export const updateRankById = async (req, res) => {
                 msg: "Hace falta una descripcion"
             })
         }
-        if (Level === undefined || Level === "") {
+        if (level === undefined || Level === "") {
             return res.status(400).json({
                 msg: "El usuario requiere un nivel"
             })

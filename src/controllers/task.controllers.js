@@ -35,7 +35,13 @@ export const createTask = async (req,res) => {
 
 export const getAllTasks = async (req, res) => {
     try {
-        const tasks = await Task.findAll();
+        const tasks = await Task.findAll({
+            include: {
+                model: User,
+                as: 'author',
+                attributes: { exclude: ['password'] }
+            }
+        });
         return res.json({
             count: tasks.length,
             data: tasks
