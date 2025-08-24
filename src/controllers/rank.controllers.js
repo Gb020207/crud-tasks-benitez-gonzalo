@@ -18,7 +18,7 @@ export const createRank = async (req, res) => {
                 msg: "El usuario requiere un nivel"
             })
         }
-        const rank = await Rank.create({ name, description, Level});
+        const rank = await Rank.create({ name, description, level});
         try {
             return res.status(201).json({
                 msg:"Se ha creado el rango correctamente"
