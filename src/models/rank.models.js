@@ -12,3 +12,4 @@ export const Rank = sequelize.define("Rank", {
 }
 )
 
+

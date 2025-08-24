@@ -5,7 +5,7 @@ import routerTask from './src/routes/task.routes.js';
 import routesUser from './src/routes/user.routes.js';
 import routesRank from './src/routes/rank.routes.js';
 import routerRankUser from './src/routes/rank_user.routes.js';
-
+import routerReward from './src/routes/reward.routes.js';
 dotenv.config();
 
 const app = express();
@@ -18,6 +18,7 @@ app.use("/api", routerTask)
 app.use("/api", routesUser);
 app.use("/api", routesRank);
 app.use("/api", routerRankUser);
+app.use("/api", routerReward);
 
 app.get('/', (req, res) => res.json({ ok: true }));
 
