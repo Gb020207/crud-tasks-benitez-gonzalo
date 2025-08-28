@@ -14,3 +14,6 @@ Rank.belongsToMany(User, { through: RankUser, foreignKey: 'rankId', as: 'users' 
 User.belongsToMany(Rank, { through: RankUser, foreignKey: 'userId', as: 'ranks' });
 
 export default RankUser;
+
+RankUser.belongsTo(Rank, { foreignKey: 'rankId', as: 'rank' });
+RankUser.belongsTo(User, { foreignKey: 'userId', as: 'user' });
